@@ -25,21 +25,21 @@ class TextNode:
         )
 
     def __repr__(self) -> str:
-        return f"TextNode({self.text}, {self.text_type}, {self.url}"
+        return f"TextNode({self.text}, {self.text_type}, {self.url})"
 
     def text_node_to_html(self):
         match self.text_type:
-            case TextType.TEXT.value:
+            case TextType.TEXT:
                 return LeafNode(value=self.text)
-            case TextType.BOLD.value:
+            case TextType.BOLD:
                 return LeafNode("b", self.text)
-            case TextType.ITALIC.value:
+            case TextType.ITALIC:
                 return LeafNode("i", self.text)
-            case TextType.CODE.value:
+            case TextType.CODE:
                 return LeafNode("code", self.text)
-            case TextType.LINK.value:
+            case TextType.LINK:
                 return LeafNode("a", self.text, {"href": self.url})
-            case TextType.IMAGE.value:
+            case TextType.IMAGE:
                 return LeafNode("img", "", {"src": self.url, "alt": self.text})
             case _:
                 raise Exception("invalid text type")
