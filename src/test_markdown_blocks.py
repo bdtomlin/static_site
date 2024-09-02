@@ -70,19 +70,19 @@ class TestMarkdownBlocks(unittest.TestCase):
         self.assertNotEqual(not_expected, actual)
 
     def test_block_to_block_type__ol(self):
-        block = "1. this\n2. is\n3. a ol"
+        block = "1. this\n2. is\n3. an ol"
         expected = "ol"
         actual = block_to_block_type(block)
         self.assertEqual(expected, actual)
 
     def test_block_to_block_type__not_ol(self):
-        block = "1. this\n is not\n3. a ol"
+        block = "1. this\n is not\n3. not an ol"
         not_expected = "ol"
         actual = block_to_block_type(block)
         self.assertNotEqual(not_expected, actual)
 
     def test_block_to_block_type__not_ol2(self):
-        block = "1. this\n3. is not\n2. a ol"
+        block = "1. this\n3. is not\n2. not an ol"
         not_expected = "ol"
         actual = block_to_block_type(block)
         self.assertNotEqual(not_expected, actual)

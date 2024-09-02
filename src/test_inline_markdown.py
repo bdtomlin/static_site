@@ -1,5 +1,4 @@
 import unittest
-from pprint import pp
 
 
 from inline_markdown import (
