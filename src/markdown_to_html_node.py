@@ -1,6 +1,5 @@
 import re
 from inline_markdown import text_to_textnodes
-from leafnode import LeafNode
 from markdown_blocks import (
     markdown_to_blocks,
     block_to_block_type,
@@ -68,7 +67,7 @@ def ul_html(block):
     lines = block.split("\n")
     lis = []
     for i in range(len(lines)):
-        stripped = re.sub(r"^\*\s", "", lines[i])
+        stripped = re.sub(r"^(\*|\-)\s", "", lines[i])
         text_nodes = text_to_textnodes(stripped)
         html_nodes = map(lambda tn: tn.to_html_node(), text_nodes)
         lis.append(ParentNode("li", html_nodes))
@@ -79,7 +78,7 @@ def ol_html(block):
     lines = block.split("\n")
     lis = []
     for i in range(len(lines)):
-        stripped = re.sub(r"^d+\.\s", "", lines[i])
+        stripped = re.sub(r"^\d+\.\s", "", lines[i])
         text_nodes = text_to_textnodes(stripped)
         html_nodes = map(lambda tn: tn.to_html_node(), text_nodes)
         lis.append(ParentNode("li", html_nodes))

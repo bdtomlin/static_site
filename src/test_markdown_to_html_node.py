@@ -11,6 +11,10 @@ This is a paragraph.
 * b
 * c
 
+- a
+- b
+- c
+
 another regular paragraph, but
 let's make this one multiline
 just for fun
@@ -34,9 +38,9 @@ for good measure
 """
 
 expected = """
-<div><h1>Heading 1</h1><p>This is a paragraph.</p><ul><li>a</li><li>b</li><li>c</li></ul><p>another regular paragraph, but
+<div><h1>Heading 1</h1><p>This is a paragraph.</p><ul><li>a</li><li>b</li><li>c</li></ul><ul><li>a</li><li>b</li><li>c</li></ul><p>another regular paragraph, but
 let's make this one multiline
-just for fun</p><ol><li>1. one</li><li>2. two</li><li>3. three</li></ol><blockquote>A quote starts
+just for fun</p><ol><li>one</li><li>two</li><li>three</li></ol><blockquote>A quote starts
 here and spans
 a few lines.</blockquote><pre><code>
 def some_fun():
@@ -49,5 +53,6 @@ for good measure</p></div>
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
     def test_markdown_to_html_node(self):
+        self.maxDiff = None
         actual = markdown_to_html_node(markdown).to_html()
         self.assertEqual(expected, actual)
