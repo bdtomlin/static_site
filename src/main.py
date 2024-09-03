@@ -1,9 +1,15 @@
-from textnode import TextNode
+import os
+import shutil
 
 
 def main():
-    tn = TextNode("This is a text node", "bold", "https://www.boot.dev")
-    print(tn)
+    copy_static()
+
+
+def copy_static():
+    if not os.path.exists("../public"):
+        shutil.rmtree("public")
+    print(os.listdir())
 
 
 main()
